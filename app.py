@@ -95,8 +95,8 @@ def network_graph(yearRange, AccountToSearch):
 
     index = 0
     for edge in G.edges:
-        x0, y0 = G.node[edge[0]]['pos']
-        x1, y1 = G.node[edge[1]]['pos']
+        x0, y0 = G.nodes[edge[0]]['pos']
+        x1, y1 = G.nodes[edge[1]]['pos']
         weight = float(G.edges[edge]['TransactionAmt']) / max(edge1['TransactionAmt']) * 10
         trace = go.Scatter(x=tuple([x0, x1, None]), y=tuple([y0, y1, None]),
                            mode='lines',
@@ -112,7 +112,7 @@ def network_graph(yearRange, AccountToSearch):
 
     index = 0
     for node in G.nodes():
-        x, y = G.node[node]['pos']
+        x, y = G.nodes[node]['pos']
         hovertext = "CustomerName: " + str(G.nodes[node]['CustomerName']) + "<br>" + "AccountType: " + str(
             G.nodes[node]['Type'])
         text = node1['Account'][index]
@@ -130,8 +130,8 @@ def network_graph(yearRange, AccountToSearch):
 
     index = 0
     for edge in G.edges:
-        x0, y0 = G.node[edge[0]]['pos']
-        x1, y1 = G.node[edge[1]]['pos']
+        x0, y0 = G.nodes[edge[0]]['pos']
+        x1, y1 = G.nodes[edge[1]]['pos']
         hovertext = "From: " + str(G.edges[edge]['Source']) + "<br>" + "To: " + str(
             G.edges[edge]['Target']) + "<br>" + "TransactionAmt: " + str(
             G.edges[edge]['TransactionAmt']) + "<br>" + "TransactionDate: " + str(G.edges[edge]['Date'])
@@ -152,10 +152,10 @@ def network_graph(yearRange, AccountToSearch):
                             clickmode='event+select',
                             annotations=[
                                 dict(
-                                    ax=(G.node[edge[0]]['pos'][0] + G.node[edge[1]]['pos'][0]) / 2,
-                                    ay=(G.node[edge[0]]['pos'][1] + G.node[edge[1]]['pos'][1]) / 2, axref='x', ayref='y',
-                                    x=(G.node[edge[1]]['pos'][0] * 3 + G.node[edge[0]]['pos'][0]) / 4,
-                                    y=(G.node[edge[1]]['pos'][1] * 3 + G.node[edge[0]]['pos'][1]) / 4, xref='x', yref='y',
+                                    ax=(G.nodes[edge[0]]['pos'][0] + G.nodes[edge[1]]['pos'][0]) / 2,
+                                    ay=(G.nodes[edge[0]]['pos'][1] + G.nodes[edge[1]]['pos'][1]) / 2, axref='x', ayref='y',
+                                    x=(G.nodes[edge[1]]['pos'][0] * 3 + G.nodes[edge[0]]['pos'][0]) / 4,
+                                    y=(G.nodes[edge[1]]['pos'][1] * 3 + G.nodes[edge[0]]['pos'][1]) / 4, xref='x', yref='y',
                                     showarrow=True,
                                     arrowhead=3,
                                     arrowsize=4,
