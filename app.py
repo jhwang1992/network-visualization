@@ -56,9 +56,9 @@ def network_graph(yearRange, AccountToSearch):
     # pos = nx.layout.circular_layout(G)
     # nx.layout.shell_layout only works for more than 3 nodes
     if len(shell2)>1:
-        pos = nx.layout.shell_layout(G, shells)
+        pos = nx.drawing.layout.shell_layout(G, shells)
     else:
-        pos = nx.layout.spring_layout(G)
+        pos = nx.drawing.layout.spring_layout(G)
     for node in G.nodes:
         G.nodes[node]['pos'] = list(pos[node])
 
